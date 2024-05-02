@@ -11,7 +11,7 @@ require ("mainfunctions/general-functions.php");
 
 
 ?>
-
+<!DOCTYPE html>
 <html>
 
 
