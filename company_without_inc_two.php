@@ -6,7 +6,7 @@ $flag_assignto_viewby = 0;
 
 $tmpdisplay_flg = "n"; $b2b_comp_id = "";
 
-
+$searchcrit = "";
 
 $status_str = " industry_id = '' ";
 
@@ -353,7 +353,7 @@ if($found_rec==1){
                 $UCB_ZW_Rep1=$emprow["initials"];
 
                 
-
+                $UCB_ZW_Rep_w = "";
             if($data["ucbzw_flg"]==0){
 
                 $water_rec="No";
@@ -407,7 +407,7 @@ if($found_rec==1){
 
             }
 
-            
+            $industry = "";
 
             if($data["industry_id"]!=""){
 
@@ -437,9 +437,9 @@ if($found_rec==1){
             }
 
             
-
+            $parent = "";
             $parentchild=$data["parent_child"];
-
+            $parentchild_txt = "";
             
 
             if($parentchild!="")
@@ -824,7 +824,7 @@ if($found_rec==1){
 
             $acc_status = "";
             db_b2b();
-          
+           
 
 
             $qry_s = "SELECT name from status where id = '". $data['status'] . "'";
@@ -1151,7 +1151,8 @@ if($found_rec==1){
                                             
 
                         <?php
-
+                       
+                        $bgcolor_str = "";
                         $new_nickname = highlightSearchKeywords($nickname,$searchcrit);
 
 

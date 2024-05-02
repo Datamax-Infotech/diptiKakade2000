@@ -35,6 +35,7 @@ function get_loop_box_id($b2b_id){
 
 }
 
+
 ?>
 
 <style>
@@ -564,7 +565,7 @@ th {
 
 					
 
-					
+					$zipStr= "";
 
 					if ($tmp_zip != ""){
 
@@ -590,7 +591,7 @@ th {
 
 
 
-				
+					$inv_id_list ="";
 
 						if ($inv["availability"] != "-3.5" )
 
@@ -598,12 +599,15 @@ th {
 
 							$inv_id_list .= $inv["I"] . ",";
 
+						}else{
+							$inv_id_list ="";
 						}
 
 						
 
 						$distC = 0;
-
+						$locLat = "";
+						$locLong = "";
 						if ($tmp_zip != ""){
 							db_b2b();
 							$dt_view_res3 = db_query($zipStr);	
@@ -650,12 +654,14 @@ th {
 
 
 						$next_load_available_date = "";
-
+						$ship_ltl = "";
 						$qry_loc = "select id, bpallet_qty, boxes_per_trailer, ship_ltl, customer_pickup_allowed, box_warehouse_id,vendor_b2b_rescue, box_warehouse_id, next_load_available_date from loop_boxes where b2b_id=". $inv["I"];	
 						db();
 						$dt_view = db_query($qry_loc);	
-
-						
+						$customer_pickup_allowed = "";
+						$shipfrom_city = "";
+						$shipfrom_state  = "";
+						$shipfrom_zip  = "";
 
 						while ($loc_res = array_shift($dt_view)) {
 
@@ -798,7 +804,7 @@ th {
 				
 
 							$vendor_name = "";
-
+							$ownername ="";
 							//account owner
 
 							if($inv["vendor_b2b_rescue"]>0){
@@ -1094,7 +1100,7 @@ th {
 
 							}						
 
-
+							$miles_away_color ="";
 
 							if ($tmp_zip != ""){
 

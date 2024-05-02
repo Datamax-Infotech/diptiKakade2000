@@ -134,58 +134,58 @@
 
 
 
-	function highlightSearchKeywords($text, $keyword) {  
+	// function highlightSearchKeywords($text, $keyword) {  
 
-		$wordsAry = explode(" ", $keyword);
+	// 	$wordsAry = explode(" ", $keyword);
 
-		$wordsCount = count($wordsAry);
+	// 	$wordsCount = count($wordsAry);
 
 
 
-		$actual_data_Ary = explode(" ", trim($text));
+	// 	$actual_data_Ary = explode(" ", trim($text));
 
-		$actual_data_cnt = count($actual_data_Ary);
+	// 	$actual_data_cnt = count($actual_data_Ary);
 
 		
 
-		$new_str = "";
+	// 	$new_str = "";
 
-		for($cnt_1=0;$cnt_1 < $actual_data_cnt;$cnt_1++) {
+	// 	for($cnt_1=0;$cnt_1 < $actual_data_cnt;$cnt_1++) {
 
-			$char_match_flg = "no";
+	// 		$char_match_flg = "no";
 
-			for ($i=0; $i<$wordsCount; $i++) {
-
-				
+	// 		for ($i=0; $i<$wordsCount; $i++) {
 
 				
+
+				
 				
 
-				if (strlen($wordsAry[$i]) > 1){
+	// 			if (strlen($wordsAry[$i]) > 1){
 
-					$pos = strpos(strtolower($actual_data_Ary[$cnt_1]), strtolower($wordsAry[$i]));
+	// 				$pos = strpos(strtolower($actual_data_Ary[$cnt_1]), strtolower($wordsAry[$i]));
 
-					if ($pos !== false && strlen($actual_data_Ary[$cnt_1]) > 0){
+	// 				if ($pos !== false && strlen($actual_data_Ary[$cnt_1]) > 0){
 
-						$char_match_flg = "yes";
+	// 					$char_match_flg = "yes";
 
-						$new_str .=  "<span style='font-weight:bold; background:#FFFE63;'>" . $actual_data_Ary[$cnt_1] . "</span>" . " ";
+	// 					$new_str .=  "<span style='font-weight:bold; background:#FFFE63;'>" . $actual_data_Ary[$cnt_1] . "</span>" . " ";
 
-					}	
+	// 				}	
 
-				}	
+	// 			}	
 
-			}
+	// 		}
 
-			if ($char_match_flg == "no")
+	// 		if ($char_match_flg == "no")
 
-			{
+	// 		{
 
-				$new_str .= $actual_data_Ary[$cnt_1] . " ";
+	// 			$new_str .= $actual_data_Ary[$cnt_1] . " ";
 
-			}			
+	// 		}			
 
-		}
+	// 	}
 
 		
 
@@ -193,8 +193,34 @@
 
 
 
+	// 	return trim($new_str);
+
+	// }
+	function highlightSearchKeywords(string $text, string $keyword): string {
+		$wordsAry = explode(" ", $keyword);
+		$wordsCount = count($wordsAry);
+	
+		$actual_data_Ary = explode(" ", trim($text));
+		$actual_data_cnt = count($actual_data_Ary);
+	
+		$new_str = "";
+	
+		for($cnt_1 = 0; $cnt_1 < $actual_data_cnt; $cnt_1++) {
+			$char_match_flg = "no";
+			for ($i = 0; $i < $wordsCount; $i++) {
+				if (strlen($wordsAry[$i]) > 1) {
+					$pos = strpos(strtolower($actual_data_Ary[$cnt_1]), strtolower($wordsAry[$i]));
+					if ($pos !== false && strlen($actual_data_Ary[$cnt_1]) > 0) {
+						$char_match_flg = "yes";
+						$new_str .=  "<span style='font-weight:bold; background:#FFFE63;'>" . $actual_data_Ary[$cnt_1] . "</span>" . " ";
+					}   
+				}   
+			}
+			if ($char_match_flg == "no") {
+				$new_str .= $actual_data_Ary[$cnt_1] . " ";
+			}           
+		}
 		return trim($new_str);
-
 	}
-
+	
 ?>

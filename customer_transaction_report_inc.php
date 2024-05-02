@@ -1,3 +1,10 @@
+
+<?php
+									$surl = "customer_transaction_report.php?zip=" . $_REQUEST['zip'] . "&miles=" . $_REQUEST['miles'] . "&filterby=" . $_REQUEST['filterby'] . "&sort=y&";
+									$asc_img = '<img src="images/sort_asc.png" width="6px;" height="12px;">';
+									$desc_img = '<img src="images/sort_desc.png" width="6px;" height="12px;">';
+									$MGArray_parent_child_data = "";
+								?>
 <table width="100%" border="0" cellspacing="2" cellpadding="5" bgcolor="#F3F3F3" id="table" class="sortable">
 							<thead>
 								<tr>
@@ -295,7 +302,7 @@
 
 														$distance = round(acos(sin(deg2rad($lat1)) * sin(deg2rad($row['latitude'])) + cos(deg2rad($lat1)) * cos(deg2rad($row['latitude'])) * cos(deg2rad($row['longitude']) - deg2rad($lon1))) * $r, 0);
 														//
-
+													
 														if (!isset($_REQUEST["sort"])) {
 															?>
 																														<tr valign="middle" id="tbl_div<?php echo $compid ?>">
@@ -359,7 +366,20 @@
 
 									<?php
 									}
-
+									        $vc_array_distance="";
+											$vc_array_ucbZw = "";
+											$vc_array_nickname = "";
+											$vc_array_actStatus="";
+											$vc_array_industry = "";
+											$vc_array_salesTrans = "";
+											$vc_array_salesRevenue = "";
+											$vc_array_purchaseTrans = "";
+											$vc_array_total_purchasePayments = "";
+											$vc_array_total_parent = "";
+											$vc_array_next_step = "";
+											$vc_array_next_date = "";
+											$vc_array_contact = "";
+											$vc_array_last_date = "";
 											if (isset($_REQUEST["sort"])) 
 											{
 

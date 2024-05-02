@@ -59,10 +59,12 @@ require "mainfunctions/general-functions.php";
 				<td valign="top"></td>
 			</tr>
 			<tr>
+				
 				<td valign="top">
 					    <?php
 						$sort_order_pre = "ASC";
-
+						$asc_img = "";
+						$surl = "";
 						if ($_GET['sort_order_pre'] == "ASC") {
 							$sort_order_pre = "DESC";
 						} else {
@@ -111,11 +113,7 @@ require "mainfunctions/general-functions.php";
 							<div>
 								<i>Note: Please wait until you see <font color="red">"END OF REPORT"</font> at the bottom of the report, before using the sort option.</i>
 							</div>
-								<?php
-									$surl = "customer_transaction_report.php?zip=" . $_REQUEST['zip'] . "&miles=" . $_REQUEST['miles'] . "&filterby=" . $_REQUEST['filterby'] . "&sort=y&";
-									$asc_img = '<img src="images/sort_asc.png" width="6px;" height="12px;">';
-									$desc_img = '<img src="images/sort_desc.png" width="6px;" height="12px;">';
-								?>
+							
 						<?php
 						include 'customer_transaction_report_inc.php';
 						?>
