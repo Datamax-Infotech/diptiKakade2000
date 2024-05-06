@@ -207,9 +207,17 @@ for ($i = 1; $i < 5; $i++) {
         ?>
 			</tr>
 		<?php
-$SIArray = $DTArray[$i];
-        array_multisort(array_column($SIArray, 'warehouse'), SORT_ASC,
-            array_column($SIArray, 'last_month'), SORT_DESC, $SIArray);
+        $SIArray = $DTArray[$i];
+        // array_multisort(array_column($SIArray, 'warehouse'), SORT_ASC,
+        // array_column($SIArray, 'last_month'), SORT_DESC, $SIArray);
+
+        usort($SIArray, function($a, $b) {
+            if ($a['warehouse'] == $b['warehouse']) {
+                return $b['last_month'] - $a['last_month'];
+            }
+            return $a['warehouse'] <=> $b['warehouse'];
+        });
+
 
         foreach ($SIArray as $row) {
             if ($bg == "#EBEBEB") {

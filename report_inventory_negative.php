@@ -107,7 +107,7 @@ while ($row = array_shift($sql)) {
 
         $b2b_ovh_costCents = $myrowsel_b2b["overhead_costCents"];
 
-        $b2b_costDollar = $boxgoodvalueDollar + $b2b_ovh_costDollar;
+        $b2b_costDollar = floatval($boxgoodvalueDollar) + floatval($b2b_ovh_costDollar);
 
         $b2b_costCents = "0." . $boxgoodvalueCents + $b2b_ovh_costCents;
 
