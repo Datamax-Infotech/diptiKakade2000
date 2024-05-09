@@ -1,8 +1,8 @@
 <?php
 session_start();
-ini_set("display_errors", "1");
+// ini_set("display_errors", "1");
 
-error_reporting(E_ERROR);
+// error_reporting(E_ERROR);
 //require "inc/header_session.php";
 require "../mainfunctions/database.php";
 require "../mainfunctions/general-functions.php";

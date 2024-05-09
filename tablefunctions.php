@@ -1717,7 +1717,8 @@
 
 
 
-	function viewBoxRequest(int $box1, int $box2, int $box3, int $box4, string $q1, string $q2, string $q3, string $q4, string $q5, string $q6, string $q7, string $q8, string $q9, string $q10, string $notes, int $ID): void 
+	function viewBoxRequest($box1,$box2,$box3,$box4,$q1,$q2,$q3,$q4,$q5,$q6,$q7,$q8,$q9,$q10,$notes,$ID)
+
 
 	{
 
@@ -1824,8 +1825,7 @@
 
 			?>
 			<tr align="center">
-				<td colspan="2" bgcolor="#C0CDDA"><font face="Arial, Helvetica, sans-serif" size="1">BOX REQUEST</font><font face="Arial, Helvetica, sans-serif" size="1" color="#333333">INFORMATION <a href="viewCompany.php?ID=<?php echo $ID; ?>&bid=
-				<?php echo $rsdp['ID'] ?>&Edit=3"><img bgcolor="#C0CDDA"  src="images/edit.jpg"></a></font></td>
+				<td colspan="2" bgcolor="#C0CDDA"><font face="Arial, Helvetica, sans-serif" size="1">BOX REQUEST</font><font face="Arial, Helvetica, sans-serif" size="1" color="#333333">INFORMATION <a href="viewCompany.php?ID=<?php echo $ID; ?>&bid=<?php echo $redp['ID']; ?>&Edit=3"><img bgcolor="#C0CDDA"  src="images/edit.jpg"></a></font></td>
 			</tr>
 			<form method="post" action="editTables.php">
 				<?php
@@ -2195,7 +2195,7 @@
 
 
 
-	function newViewBoxRequest(int $ID)
+	function newViewBoxRequest(int $ID): void
 	{
 		?>
 		<table>
@@ -2222,8 +2222,6 @@
 								echo "<BR>".$fetchboxes['recurring'];
 								echo "<BR>Delivery Date: ".$fetchboxes['preferred_delivery_date'];
 
-
-
 						?>
 						</font>
 						</td>
@@ -2241,7 +2239,7 @@
 	}
 
 
-	function viewRescue(int $ID)
+	function viewRescue(int $ID): void
 	{
 		?>
 		<table>
@@ -2341,7 +2339,7 @@
 
 
 
-	function newviewRescue(int $ID)
+	function newviewRescue(int $ID): void
 	{
 		?>
 		<table>
@@ -2445,7 +2443,7 @@
 
 	}
 
-	function clientdashboard(int $ID)
+	function clientdashboard(int $ID): void
 	{
 		?>
 		<table border="0" bgcolor="#F6F8E5" style="font-family:Arial, Helvetica, sans-serif; font-size:10;">
@@ -2565,7 +2563,7 @@
 		<?php
 	}
 
-	function addBoxRequested(int $ID)
+	function addBoxRequested(int $ID): void
 	{
 		$strQuery = "SELECT * FROM companyInfo WHERE ID = " . $ID;
 		db_b2b();
@@ -2679,15 +2677,14 @@
 
 	}
 
-	function remove_non_numeric(string $string) {
-	return preg_replace('/\D/', '', $string);
+	function remove_non_numeric(string $string): string {
+		return preg_replace('/\D/', '', $string);
 	}
 
-	function right($string,$chars)
+	function right(string $string, int $chars): string
 	{
 		$vright = substr($string, strlen($string)-$chars,$chars);
 		return $vright;
-
 	}
 
 	// function make_insert_query($table_name, $arr_data)
@@ -2708,7 +2705,7 @@
 	// 	return addslashes(trim($data));
 	// }
 
-	function putEmployee(string $data)
+	function putEmployee(string $data): void
 	{
 		?>
 		<select size="1" name="<?php echo $data?>" id="<?php echo $data?>">
@@ -2734,20 +2731,19 @@
 
 	}
 
-	function get_initials_from_id_new(int $id)
+	function get_initials_from_id_new(int $id): string
 	{
-
-
 		$dt_so = "SELECT * FROM loop_employees WHERE id = " . $id;
 		db();
 		$dt_res_so = db_query($dt_so);
 
-			while ($so_row = array_shift($dt_res_so)) {
+		while ($so_row = array_shift($dt_res_so)) {
 			return $so_row["initials"];
-			}
+		}
+		return "";
 	}
 
-	function timestamp_to_datetime_new($d)
+	function timestamp_to_datetime_new(string $d): string
 	{
 
 		$da = explode(" ",$d);
@@ -2757,8 +2753,8 @@
 		$x = $dp[1] . "/" . $dp[2] . "/" . $dp[0];
 
 
-		if ($dh[0] - 2 > 12) {
-		$x = $x . " " . ($dh[0] - 12) . ":" . $dh[1] . "PM CT";
+		if ((int)$dh[0] - 2 > 12) {
+		$x = $x . " " . ((int)$dh[0] - 12) . ":" . $dh[1] . "PM CT";
 		} else {
 		$x = $x . " " . ($dh[0] ) . ":" . $dh[1] . "AM CT";
 		}

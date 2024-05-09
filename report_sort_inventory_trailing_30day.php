@@ -5,7 +5,7 @@ require "../mainfunctions/database.php";
 require "../mainfunctions/general-functions.php";
 
 //set_time_limit(0);
-ini_set('memory_limit', '-1');
+// ini_set('memory_limit', '-1');
 
 ?>
 <!DOCTYPE html>

@@ -3,7 +3,7 @@
 // ini_set("display_errors", "1");
 
 // error_reporting(E_ALL);
-ini_set('memory_limit', '-1');
+// ini_set('memory_limit', '-1');
 
 
 function get_loop_box_id(int $b2b_id): ?int
@@ -850,7 +850,7 @@ while ($inv = array_shift($yyyy)) {
 
                 $arr_length = explode("/", $inv["lengthFraction"]);
 
-                if (count($arr_length) > 0) {
+                if (count($arr_length) > 1) {
 
                     $blength_frac = intval($arr_length[0]) / intval($arr_length[1]);
 
@@ -864,7 +864,7 @@ while ($inv = array_shift($yyyy)) {
 
                 $arr_width = explode("/", $inv["widthFraction"]);
 
-                if (count($arr_width) > 0) {
+                if (count($arr_width) > 1) {
 
                     $bwidth_frac = intval($arr_width[0]) / intval($arr_width[1]);
 
@@ -878,7 +878,7 @@ while ($inv = array_shift($yyyy)) {
 
                 $arr_depth = explode("/", $inv["depthFraction"]);
 
-                if (count(arr_depth) > 0) {
+                if (count($arr_depth)) {
 
                     $bdepth_frac = intval($arr_depth[0]) / intval($arr_depth[1]);
 

@@ -170,7 +170,7 @@ if (isset($_REQUEST["boxtype"]) && $_REQUEST["boxtype"] == "Gaylord") {
 
     }
 
-    $box_shape = "";
+   
 
     $box_shape_val = explode(",", $_REQUEST["shape"]);
 
@@ -948,6 +948,7 @@ while ($dt_view_row = array_shift($dt_view_res)) {
 
                 } else {
 
+                    $pallet_val = floatval($pallet_val);
                     $pallet_val_format = number_format($pallet_val, 0);
 
                     $pallet_val = " (" . $pallet_val_format . ")";
@@ -956,6 +957,7 @@ while ($dt_view_row = array_shift($dt_view_res)) {
 
             } else {
 
+                $pallet_val = floatval($pallet_val);
                 $pallet_val_format = number_format($pallet_val, 0);
 
                 $pallet_val = " (" . $pallet_val_format . ")";
@@ -978,6 +980,7 @@ while ($dt_view_row = array_shift($dt_view_res)) {
 
                 } else {
 
+                    $pallet_val_afterpo = floatval($pallet_val_afterpo);
                     $pallet_val_afterpo_format = number_format($pallet_val_afterpo, 0);
 
                     $pallet_val_afterpo = " (" . $pallet_val_afterpo_format . ")";
@@ -986,6 +989,7 @@ while ($dt_view_row = array_shift($dt_view_res)) {
 
             } else {
 
+                $pallet_val_afterpo = floatval($pallet_val_afterpo);
                 $pallet_val_afterpo_format = number_format($pallet_val_afterpo, 0);
 
                 $pallet_val_afterpo = " (" . $pallet_val_afterpo_format . ")";
@@ -997,7 +1001,9 @@ while ($dt_view_row = array_shift($dt_view_res)) {
         $pallet_space_per = "";
 
         $to_show_data = "no";
-
+        $filter_availability = "";
+        $blength_frac = "";
+        $bwidth_frac = "";
         if ($filter_availability != "All" && $filter_availability != "") {
 
             if ($filter_availability == "truckloadonly") {
@@ -1074,7 +1080,12 @@ while ($dt_view_row = array_shift($dt_view_res)) {
 
                     $blength_frac_num = explode("/", $blength_frac);
 
-                    $blength_frac_conv = $blength_frac_num[0] / $blength_frac_num[1];
+                    //$blength_frac_conv = $blength_frac_num[0] / $blength_frac_num[1];
+                   
+                    $blength_frac_num_0 = is_numeric($blength_frac_num[0]) ? $blength_frac_num[0] : 0;
+                    $blength_frac_num_1 = is_numeric($blength_frac_num[1]) ? $blength_frac_num[1] : 1;
+                    $blength_frac_conv = ($blength_frac_num_1 != 0) ? ($blength_frac_num_0 / $blength_frac_num_1) : 0;
+
 
                 } else {
 
@@ -1086,7 +1097,7 @@ while ($dt_view_row = array_shift($dt_view_res)) {
 
                     $bwidth_frac_num = explode("/", $bwidth_frac);
 
-                    $bwidth_frac_conv = $bwidth_frac_num[0] / $bwidth_frac_num[1];
+                    $bwidth_frac_conv = is_numeric($bwidth_frac_num[0]) && is_numeric($bwidth_frac_num[1]) ? ($bwidth_frac_num[0] / $bwidth_frac_num[1]) : 0;
 
                 } else {
 
@@ -1098,7 +1109,7 @@ while ($dt_view_row = array_shift($dt_view_res)) {
 
                     $bdepth_frac_num = explode("/", $bdepth_frac);
 
-                    $bdepth_frac_conv = $bdepth_frac_num[0] / $bdepth_frac_num[1];
+                    $bdepth_frac_conv = is_numeric($bdepth_frac_num[0]) && is_numeric($bdepth_frac_num[1]) ? ($bdepth_frac_num[0] / $bdepth_frac_num[1]) : 0;
 
                 } else {
 
